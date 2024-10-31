@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ψηφοφορία για Μαγνήτες</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #333;
+            background-image: url('poll.jpg'); /* Φόρτωσε την εικόνα "poll.jpg" στον ίδιο φάκελο */
+            color: white;
+        }
+        .button {
+            display: inline-block;
+            padding: 20px 40px;
+            font-size: 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s ease; /* Ομαλή μετάβαση χρώματος */
+        }
+        .red-button {
+            background-color: red;
+        }
+        .red-button:hover {
+            background-color: darkred; /* Σκοτεινότερο κόκκινο κατά τη διάρκεια του hover */
+        }
+        .green-button {
+            background-color: green;
+        }
+        .green-button:hover {
+            background-color: darkgreen; /* Σκοτεινότερο πράσινο κατά τη διάρκεια του hover */
+        }
+        #username {
+            padding: 10px;
+            font-size: 18px;
+            border: 2px solid white; /* Λευκό περίγραμμα */
+            border-radius: 5px; /* Γωνίες του πλαισίου */
+            background-color: transparent; /* Διαφάνεια */
+            color: white; /* Λευκό κείμενο */
+            width: 300px; /* Πλάτος του πλαισίου */
+            margin-bottom: 20px; /* Κενό κάτω από το πεδίο εισαγωγής */
+        }
+        #username::placeholder {
+            color: lightgray; /* Χρώμα placeholder */
+            opacity: 1; /* Εμφάνιση placeholder */
+        }
+        #thankYouMessage {
+            margin-top: 30px;
+            font-size: 18px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ψηφοφορία: Πιστεύεις στους μαγνήτες;</h1>
+    <input type="text" id="username" placeholder="Όνομα Χρήστη" required>
+    <br>
+    <button class="button red-button" onclick="vote('no')">Δεν πιστεύω στους μαγνήτες</button>
+    <button class="button green-button" onclick="vote('yes')">Πιστεύω στους μαγνήτες</button>
+
+    <div id="thankYouMessage"></div>
+
+    <script>
+        function vote(answer) {
+            const username = document.getElementById('username').value;
+            if (!username) {
+                alert("Παρακαλώ εισάγετε το όνομά σας.");
+                return;
+            }
+
+            // Κάνουμε POST request στο Google Apps Script
+            fetch("https://script.google.com/macros/s/AKfycbxre0YLAMk67ewlVhGIjuU8x8hsFo0N_M6yOhYl1kIeITVGG4bZJHShtrxjj9bO6EuX1w/exec", {
+                method: "POST",
+                body: JSON.stringify({ username: username, vote: answer }),
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const thankYouDiv = document.getElementById('thankYouMessage');
+                thankYouDiv.innerHTML = "<p>Ευχαριστούμε πολύ για την ψήφο σας!</p>";
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Σφάλμα κατά την υποβολή της ψήφου.");
+            });
+        }
+    </script>
+
+</body>
+</html>
