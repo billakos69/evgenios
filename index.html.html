@@ -1,0 +1,85 @@
+<HTML>
+<TITLE> MAGNET SITE </TITLE>
+<center>
+<BODY   background="mason.jpg" >
+
+ <h1><font color='white'> ΔΕΝ ΕΙΝΑΙ ΣΚΑΜ !!! </font> </h1> 
+<p> <h2> <font color='white'> προσωπικός ιστότοπος αντί μαγνητιστών </font> </h2> 
+ <img src="https://cdn-icons-png.flaticon.com/512/7218/7218830.png"  </img> 
+<p> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Μεγέθυνση Κουμπιού</title>
+    <style>
+        .custom-button {
+            padding: 20px 40px; /* Εσωτερική απόσταση (padding) */
+            font-size: 24px;     /* Μέγεθος γραμματοσειράς */
+            background-color: #4CAF50; /* Χρώμα φόντου */
+            color: white;        /* Χρώμα κειμένου */
+            border: none;        /* Χωρίς περίγραμμα */
+            border-radius: 5px;  /* Στρογγυλεμένες γωνίες */
+            cursor: pointer;     /* Δείκτης χεριού */
+        }
+    </style>
+</head>
+<body>
+
+<a href="Poll.html">
+    <button class="custom-button">ΨΗΦΙΣΕ ΚΑΙ ΕΣΥ !!!!</button>
+</a>
+<h1><font color='red'> ΚΑΠΟΙΑ ΒΙΝΤΕΟ ΑΠΟ ΤΟΝ ΑΡΧΗΓΟ ΜΑΣ </font  </H1> 
+</center> 
+  <style>
+        /* Στυλ για το dropdown μενού και το κουμπί */
+        .video-select {
+            margin: 20px 0;
+            font-size: 16px;
+            padding: 5px;
+        }
+        .video-container {
+            text-align: center;
+        }
+        .video-container video {
+            width: 20%;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="video-container">
+    <!-- Dropdown επιλογής βίντεο -->
+    <select id="videoSelect" class="video-select" onchange="changeVideo()">
+        <option value="evgenios.mp4">Βίντεο 1</option>
+        <option value="evgenios (1).mp4">Βίντεο 2</option>
+        <option value="evgenios (2).mp4">Βίντεο 3</option>
+		<option value="mpampis (1).mp4">Βίντεο 4</option>
+		<option value="mpampis (2).mp4">Βίντεο 5</option>
+		<option value="evgenios 2.mp4">Βίντεο 6</option> 
+		<option value="moumpata.mp4">Βίντεο 7</option>
+    </select>
+
+    <!-- Το στοιχείο video -->
+    <video id="videoPlayer" controls>
+        <source src="video1.mp4" type="video/mp4">
+        Το πρόγραμμα περιήγησής σας δεν υποστηρίζει την αναπαραγωγή βίντεο.
+    </video>
+</div>
+
+<script>
+    // Λειτουργία αλλαγής βίντεο
+    function changeVideo() {
+        // Παίρνει το dropdown και το video στοιχείο
+        var videoSelect = document.getElementById("videoSelect");
+        var videoPlayer = document.getElementById("videoPlayer");
+
+        // Παίρνει την επιλεγμένη τιμή (αρχείο βίντεο)
+        var selectedVideo = videoSelect.value;
+
+        // Αλλάζει το source του βίντεο
+        videoPlayer.src = selectedVideo;
+        videoPlayer.load(); // Φορτώνει το νέο βίντεο
+    }
+</script>
